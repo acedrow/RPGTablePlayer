@@ -7,7 +7,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JButton;
 
 public class ThreadTestDriver {
-	private static int NUM_THREADS = 3;
+	private final static int NUM_THREADS = 3;
+	private final static int MAX_VOLUME = 0;
+	private final static int DELTA_VOLUME = 1;
+	private static int increasing = -1;
 	
 	public static AtomicInteger pool = new AtomicInteger();
 	static Thread[] thread;
@@ -16,7 +19,7 @@ public class ThreadTestDriver {
 		thread = new Thread[NUM_THREADS];
 		
 		for (int i = 0; i < NUM_THREADS; i++){
-			thread[i] = new Thread(new ThreadToTest(), "" + i);
+			thread[i] = new Thread(new ThreadToTest(MAX_VOLUME, DELTA_VOLUME), "" + i);
 		}
 		
 		ThreadTestGui gui = new ThreadTestGui();
@@ -32,9 +35,7 @@ public class ThreadTestDriver {
 		}
 	}
 	
-	public void setAllDecreasing(){
-		for (int i = 0; i < NUM_THREADS; i++){
-			
-		}
+	public int getIncreasing(){
+		return increasing;
 	}
 }
