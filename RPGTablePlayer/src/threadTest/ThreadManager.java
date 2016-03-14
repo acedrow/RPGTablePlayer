@@ -4,10 +4,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ThreadManager {
 	private final int NUM_THREADS;
-	private static float MAX_VOLUME;
-	final float MIN_VOLUME;
-	private static float DELTA_VOLUME;
-	
+	private final float MAX_VOLUME;
+	private final float MIN_VOLUME;
+	private final float DELTA_VOLUME;
+
+	float currentVolume;
+
 	private static int increasing = -1;
 	public static AtomicInteger pool = new AtomicInteger();
 	static Thread[] thread;
@@ -24,13 +26,27 @@ public class ThreadManager {
 
 		}
 	}
-	
-	//WILL NEED TO LOCK GET AND SET INCREASING ON THE SAME OBJECT
-	public int getIncreasing(){
+
+	// WILL NEED TO LOCK GET AND SET INCREASING ON THE SAME OBJECT
+	// prety sure I can just lock on "this" - the instance of ThreadManager
+	public int getIncreasing() {
 		return increasing;
 	}
+
+	public float takeVolume(float howMuch) {
+		if (currentVolume >= DELTA_VOLUME) {
+			currentVolume -= howMuch;
+			return howMuch;
+		} else {
+			currentVolume -= currentVolume;
+			return currentVolume;
+		}
+	}
 	
-	public void setIncreasing(int toIncrease){
-		increasing = toIncrease;
+	public void giveVolume(){
+		if (currentVolume + DELTA_VOLUME <= MAX_VOLUME){
+			currentVolume += DELTA_VOLUME;
+		}
+		else currentVolume = MAX_VOLUME;
 	}
 }

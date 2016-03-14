@@ -1,10 +1,4 @@
 package threadTest;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Vector;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import javax.swing.JButton;
 
 public class ThreadTestDriver {
 	private final static int NUM_THREADS = 3;
