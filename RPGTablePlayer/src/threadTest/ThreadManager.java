@@ -32,9 +32,20 @@ public class ThreadManager {
 	public int getIncreasing() {
 		return increasing;
 	}
+	
+	public void setIncreasing(int inc){
+		if (inc > 0 && inc < NUM_THREADS){
+			increasing = inc;
+		}
+	}
 
+	//NEED TO FIX/FINISH to check for min volume and such.
 	public float takeVolume(float howMuch) {
-		if (currentVolume >= DELTA_VOLUME) {
+		if (howMuch > DELTA_VOLUME){
+			System.out.println("trying to take too much volume");
+			return howMuch;
+		}
+		else if (currentVolume >= DELTA_VOLUME) {
 			currentVolume -= howMuch;
 			return howMuch;
 		} else {
@@ -43,10 +54,13 @@ public class ThreadManager {
 		}
 	}
 	
-	public void giveVolume(){
-		if (currentVolume + DELTA_VOLUME <= MAX_VOLUME){
-			currentVolume += DELTA_VOLUME;
+	public float giveVolume(float howMuch){
+		if (currentVolume + howMuch <= MAX_VOLUME){
+			currentVolume += howMuch;
+			return howMuch;
 		}
-		else currentVolume = MAX_VOLUME;
+		else{
+			
+		}
 	}
 }

@@ -32,7 +32,9 @@ public class ThreadToTest implements Runnable {
 		}
 		//if we're decreasing and volume isn't min:
 		else if (volume > MIN_VOLUME){
-			if (volume )
+			if (volume - DELTA_VOLUME >= MIN_VOLUME ){
+				volume -= threadManager.giveVolume(DELTA_VOLUME);
+			}
 		}
 		
 
