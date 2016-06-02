@@ -18,13 +18,24 @@ public class TablePlayerDriver {
 			clip.start();
 
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			
+			gainControl.setValue((float) (-10));
+			Thread.sleep(1000);
+			gainControl.setValue((float) (-20));
+			Thread.sleep(1000);
+			gainControl.setValue((float) (-30));
+			Thread.sleep(1000);
+			gainControl.setValue((float) (-40));
+			Thread.sleep(1000);
+			gainControl.setValue((float) (-50));
+			Thread.sleep(1000);
 
-			for (int i = 0; i < 10; i++) {
-
-				gainControl.setValue((float) (-i));
-				Thread.sleep(500);
-			}
-			Thread.sleep(2000);
+//			for (int i = 0; i < 30; i++) {
+//
+//				gainControl.setValue((float) (-i));
+//				Thread.sleep(500);
+//			}
+		
 
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
 			// TODO Auto-generated catch block
