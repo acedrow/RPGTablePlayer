@@ -20,7 +20,8 @@ public class CategoryPlayer {
 		File toPlay = new File("C:/Users/Linden/Downloads/baker_arduous.wav");
 		CategoryPlayer cp = new CategoryPlayer("C:/Users/Linden/Downloads/baker_arduous.wav");
 		PlayerThread player = new PlayerThread(cp, toPlay);
-		player.run();
+		player.start();
+		System.out.println("Category player past run");
 	}
 	
 	public CategoryPlayer(String fp) {

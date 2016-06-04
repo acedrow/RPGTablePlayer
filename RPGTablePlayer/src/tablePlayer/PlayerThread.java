@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.sound.sampled.*;
 
-public class PlayerThread implements Runnable {
+public class PlayerThread extends Thread {
 	AudioInputStream ais;
 	Clip clip;
 	CategoryPlayer parent;
@@ -37,6 +37,10 @@ public class PlayerThread implements Runnable {
 			
 			}
 			System.out.println("Player thread for loop done");
+			
+			while(true){
+				
+			}
 			
 		} catch (InterruptedException | UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			e.printStackTrace();
